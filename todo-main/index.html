@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <svg class="svg-container">
+        <defs>
+            <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+                    <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+                    <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+                    <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+                    <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+                <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+                <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+                <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="card-container">
+        <div class="inner-container">
+            <div class="border-outer">
+                <div class="main-card"></div>
+            </div>
+            <div class="glow-layer-1"></div>
+            <div class="glow-layer-2"></div>
+        </div>
+
+        <div class="overlay-1"></div>
+        <div class="overlay-2"></div>
+        <div class="background-glow"></div>
+
+        <div class="container">
+        <div class="yellow-line"></div>
+        <div class="title">
+            <p>To-Do List</p>
+        </div>
+        
+        <img class="sort-btn" src="images/Group 90.svg" alt="sort">
+        
+        <div class="task-input-area">
+            <input type="text" class="main-task-input">
+            <button class="close-btn"><img src="images/Group 77.svg" alt="close" class="close-icon"></button>
+        </div>
+        
+        <div class="task-container"></div>
+        
+        <div class="g-input">
+            <div class="add-circle">
+                <p>+</p>
+            </div>
+            <div class="add-text">
+                <p>Əlavə Et</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --electric-border-color: #FFD700;
+    --electric-light-color: #FFED4E;
+    --gradient-color: rgba(255, 215, 0, 0.4);
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding: 20px;
+}
+
+.svg-container {
+    position: absolute;
+}
+
+.card-container {
+    padding: 2px;
+    border-radius: 24px;
+    position: relative;
+    background: linear-gradient(
+        -30deg,
+        var(--gradient-color),
+        transparent,
+        var(--gradient-color)
+    ),
+    linear-gradient(
+        to bottom,
+        #1a1a1a,
+        #1a1a1a
+    );
+    margin-top: -50px;
+}
+
+.inner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+
+.border-outer {
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 24px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.main-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 2px solid var(--electric-border-color);
+    margin-top: -4px;
+    margin-left: -4px;
+    filter: url(#turbulent-displace);
+    position: absolute;
+}
+
+.glow-layer-1 {
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+.glow-layer-2 {
+    border: 2px solid var(--electric-light-color);
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+.overlay-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 1;
+    mix-blend-mode: overlay;
+    transform: scale(1.1);
+    filter: blur(16px);
+    background: linear-gradient(
+        -30deg,
+        #FFD700,
+        transparent 30%,
+        transparent 70%,
+        #FFD700
+    );
+    pointer-events: none;
+}
+
+.overlay-2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    transform: scale(1.1);
+    filter: blur(16px);
+    background: linear-gradient(
+        -30deg,
+        #FFED4E,
+        transparent 30%,
+        transparent 70%,
+        #FFED4E
+    );
+    pointer-events: none;
+}
+
+.background-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    filter: blur(32px);
+    transform: scale(1.1);
+    opacity: 0.3;
+    z-index: -1;
+    background: linear-gradient(
+        -30deg,
+        var(--electric-light-color),
+        transparent,
+        var(--electric-border-color)
+    );
+}
+
+.container {
+    width: 336px;
+    border-radius: 20px;
+    position: relative;
+    padding-bottom: 20px;
+    z-index: 1;
+    background-color: #ffffff;
+}
+
+
+.yellow-line {
+    background-color:#FFDC40;
+    height: 28px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    margin: 25px 0 15px 0;
+}
+
+.title p {
+    font-size: 26px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.sort-btn {
+    position: absolute;
+    top: 85px;
+    right: 15px;
+    width: 32px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.sort-btn:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.1);
+}
+
+
+
+.task-input-area {
+    margin: 30px 25px 15px 25px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #C4C4C4;
+    border-radius: 8px;
+    padding: 8px 12px;
+    position: relative;
+}
+
+
+
+.main-task-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 0;
+}
+
+.close-btn {
+    background: #ffffff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+
+
+.task-container {
+    margin: 0 25px 20px 25px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    position: relative;
+    cursor: grab;
+}
+
+
+
+.task-number {
+    background: #833AE0;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+
+}
+
+.task-text {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    color: #495057;
+    font-weight: 400;
+}
+
+.remove-task {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+
+.g-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 42px;
+    background: #833AE0;
+    margin: 0 auto;
+    border-radius: 71px;
+    cursor: pointer;
+}
+
+
+
+.add-circle {
+    background: #9953F1;
+    border-radius: 71px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-circle p {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.add-text {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+    margin-left: -15px;
+}
+
+.add-text p {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}   
+
+.hidden {
+    display: none !important;
+}
+
+.close-btn,
+.remove-task {
+    background: transparent !important;
+}
