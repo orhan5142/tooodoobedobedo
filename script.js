@@ -8,14 +8,16 @@ let plusBtn = document.querySelector('.add-circle');
 let closeBtn = document.querySelector('.close-btn');
 let closeImg = document.querySelector('.close-icon');
 
-if (!document.querySelector('.clear-all-btn')) {
-    let clearBtn = document.createElement('button');
-    clearBtn.className = 'clear-all-btn';
-    clearBtn.innerText = 'Clear All';
-    clearBtn.style.cssText = "position: absolute; top: 10px; left: 10px; cursor: pointer; background: #FF4D4D; color: white; border: none; border-radius: 4px; padding: 5px 10px; font-size: 12px; z-index: 100;";
-    document.querySelector('.container').appendChild(clearBtn);
-    clearBtn.onclick = clearAllTasks;
-}
+let clearBtn = document.createElement('button');
+clearBtn.innerHTML = 'Hamısını təmizlə';
+clearBtn.style.cssText = "display: block; margin: 0 auto 10px auto; background: #FF4D4D; color: white; border: none; border-radius: 4px; padding: 5px 15px; cursor: pointer; font-size: 12px; font-weight: bold;";
+document.querySelector('.title').after(clearBtn);
+
+clearBtn.onclick = function() {
+    taskContainer.innerHTML = "";
+    taskNumber = 1;
+    taskContainer.classList.add('hidden');
+};
 
 plusBtn.onclick = function () {
     let a = document.querySelector('.task-input-area');
@@ -29,7 +31,7 @@ closeBtn.onmouseenter = function () {
     closeImg.src = "./images/Group 70.svg";
 }
 
-closeBtn.onmouseleave = function () {
+closeImg.onmouseleave = function () {
     closeImg.src = "./images/Group 77.svg";
 }
 
@@ -38,7 +40,7 @@ closeBtn.onclick = function () {
 }
 
 function toggleComplete(checkbox) {
-    let taskText = checkbox.parentElement.querySelector('.task-text');
+    let taskText = checkbox.nextElementSibling.nextElementSibling;
     if (checkbox.checked) {
         taskText.style.textDecoration = "line-through";
         taskText.style.opacity = "0.5";
@@ -46,12 +48,6 @@ function toggleComplete(checkbox) {
         taskText.style.textDecoration = "none";
         taskText.style.opacity = "1";
     }
-}
-
-function clearAllTasks() {
-    taskContainer.innerHTML = "";
-    taskNumber = 1;
-    taskContainer.classList.add('hidden');
 }
 
 function elaveEt() {
@@ -64,12 +60,14 @@ function elaveEt() {
 
     let d = document.createElement('div');
     d.className = "task-item";
+    d.style.display = "flex";
+    d.style.alignItems = "center";
 
     d.innerHTML = `
-        <input type="checkbox" class="task-checkbox" onchange="toggleComplete(this)" style="margin-right: 10px; cursor: pointer;">
+        <input type="checkbox" class="task-check" onchange="toggleComplete(this)" style="margin-right: 10px; width: 18px; height: 18px; cursor: pointer;">
         <div class="task-number">${taskNumber}</div>
-        <input class="task-text" value="${txt}" readonly style="flex: 1; border: none; background: transparent; outline: none;">
-        <button class="remove-task" style="background: transparent; border: none; cursor: pointer;"><img class="delete-icon" src="images/Group 77.svg"></button>
+        <input class="task-text" value="${txt}" readonly style="flex: 1; border: none; background: transparent; outline: none; margin-left: 5px;">
+        <button class="remove-task" style="background: transparent; border: none; cursor: pointer;"><img class="delete-icon" src="images/Group 77.svg" style="width: 20px;"></button>
     `;
 
     taskNumber++;
@@ -115,27 +113,15 @@ document.onkeydown = function (e) {
     }
 }
 
-sortBtn.onmouseenter = function () {
-    if (sortClicked) sortBtn.src = "./images/Group 91.svg";
-    else sortBtn.src = "./images/Group 73.svg";
-}
-
-sortBtn.onmouseleave = function () {
-    if (sortClicked) sortBtn.src = "./images/Group 90.svg";
-    else sortBtn.src = "./images/Group 74.svg";
-}
-
 sortBtn.onclick = function () {
     let t = Array.from(taskContainer.querySelectorAll('.task-item'));
+    if (t.length === 0) return;
 
     t.sort(function (a, b) {
         let x = a.querySelector('.task-text').value.toLowerCase();
         let y = b.querySelector('.task-text').value.toLowerCase();
-        if (sortClicked) {
-            return x < y ? -1 : x > y ? 1 : 0;
-        } else {
-            return x > y ? -1 : x < y ? 1 : 0;
-        }
+        if (sortClicked) return x < y ? -1 : x > y ? 1 : 0;
+        else return x > y ? -1 : x < y ? 1 : 0;
     });
 
     sortClicked = !sortClicked;
