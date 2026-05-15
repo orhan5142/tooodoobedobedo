@@ -10,8 +10,6 @@
 * {
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -21,27 +19,157 @@ body {
     justify-content: center;
     background-color: #000000;
     padding: 20px;
-    overflow: hidden; /* Səhifənin özündə scroll çıxmaması üçün */
 }
 
-/* Arxa fon effektləri */
-.svg-container { position: absolute; }
+.svg-container {
+    position: absolute;
+}
+
 .card-container {
     padding: 2px;
     border-radius: 24px;
     position: relative;
-    background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)),
-                linear-gradient(to bottom, #1a1a1a, #1a1a1a);
+    background: linear-gradient(
+        -30deg,
+        var(--gradient-color),
+        transparent,
+        var(--gradient-color)
+    ),
+    linear-gradient(
+        to bottom,
+        #1a1a1a,
+        #1a1a1a
+    );
     margin-top: -50px;
 }
-.inner-container { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; }
-.border-outer { border: 2px solid rgba(255, 215, 0, 0.5); border-radius: 24px; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
-.main-card { width: 100%; height: 100%; border-radius: 24px; border: 2px solid var(--electric-border-color); filter: url(#turbulent-displace); position: absolute; }
-.glow-layer-1 { border: 2px solid rgba(255, 215, 0, 0.6); border-radius: 24px; width: 100%; height: 100%; position: absolute; filter: blur(1px); pointer-events: none; }
-.glow-layer-2 { border: 2px solid var(--electric-light-color); border-radius: 24px; width: 100%; height: 100%; position: absolute; filter: blur(4px); pointer-events: none; }
-.overlay-1, .overlay-2, .background-glow { position: absolute; width: 100%; height: 100%; border-radius: 24px; pointer-events: none; }
 
-/* Əsas Container */
+.inner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.border-outer {
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 24px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.main-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 2px solid var(--electric-border-color);
+    margin-top: -4px;
+    margin-left: -4px;
+    filter: url(#turbulent-displace);
+    position: absolute;
+}
+
+.glow-layer-1 {
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+.glow-layer-2 {
+    border: 2px solid var(--electric-light-color);
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+.overlay-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 1;
+    mix-blend-mode: overlay;
+    transform: scale(1.1);
+    filter: blur(16px);
+    background: linear-gradient(
+        -30deg,
+        #FFD700,
+        transparent 30%,
+        transparent 70%,
+        #FFD700
+    );
+    pointer-events: none;
+}
+
+.overlay-2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    transform: scale(1.1);
+    filter: blur(16px);
+    background: linear-gradient(
+        -30deg,
+        #FFED4E,
+        transparent 30%,
+        transparent 70%,
+        #FFED4E
+    );
+    pointer-events: none;
+}
+
+.background-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    filter: blur(32px);
+    transform: scale(1.1);
+    opacity: 0.3;
+    z-index: -1;
+    background: linear-gradient(
+        -30deg,
+        var(--electric-light-color),
+        transparent,
+        var(--electric-border-color)
+    );
+}
+
 .container {
     width: 336px;
     min-height: 480px;
@@ -51,19 +179,20 @@ body {
     z-index: 1;
     background-color: #ffffff;
     display: flex;
-    flex-direction: column; /* Elementlərin alt-alta düzülməsi üçün */
+    flex-direction: column;
 }
 
 .yellow-line {
     background-color: #FFDC40;
     height: 28px;
     border-radius: 10px 10px 0 0;
+    position: relative;
     flex-shrink: 0;
 }
 
 .title {
     text-align: center;
-    margin: 20px 0 5px 0;
+    margin: 20px 0 10px 0;
     flex-shrink: 0;
 }
 
@@ -71,9 +200,9 @@ body {
     font-size: 26px;
     font-weight: 700;
     color: #000000;
+    margin: 0;
 }
 
-/* Clear All Düyməsi */
 .clear-all-btn {
     display: block;
     margin: 5px auto 15px auto;
@@ -89,7 +218,11 @@ body {
     transition: 0.3s;
     flex-shrink: 0;
 }
-.clear-all-btn:hover { background: #FFD700; color: #000; }
+
+.clear-all-btn:hover {
+    background: #FFD700;
+    color: #000;
+}
 
 .sort-btn {
     position: absolute;
@@ -98,10 +231,16 @@ body {
     width: 32px;
     height: 20px;
     cursor: pointer;
+    border-radius: 4px;
+    padding: 4px;
     z-index: 5;
 }
 
-/* Input Sahəsi */
+.sort-btn:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.1);
+}
+
 .task-input-area {
     margin: 10px 25px;
     display: flex;
@@ -109,6 +248,7 @@ body {
     border: 1px solid #C4C4C4;
     border-radius: 8px;
     padding: 8px 12px;
+    position: relative;
     flex-shrink: 0;
 }
 
@@ -118,9 +258,11 @@ body {
     background: none;
     outline: none;
     font-size: 14px;
+    font-weight: 500;
+    padding: 4px 0;
 }
 
-/* "X" və Silmə düymələrinin arxa fonunu təmizləyən hissə */
+/* X düyməsinin boz fonunu təmizləyən hissə */
 .close-btn, .remove-task {
     background: transparent !important;
     border: none !important;
@@ -130,20 +272,34 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
 }
 
-/* Tapşırıq Siyahısı və Scroll */
+.close-icon, .delete-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
 .task-container {
     margin: 0 20px;
     padding: 5px;
-    max-height: 230px; 
+    max-height: 230px;
     overflow-y: auto;
     overflow-x: hidden;
-    flex-grow: 1; /* Boş qalan yeri doldurur */
+    flex-grow: 1;
 }
 
-.task-container::-webkit-scrollbar { width: 4px; }
-.task-container::-webkit-scrollbar-thumb { background: #FFD700; border-radius: 10px; }
+.task-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.task-container::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 10px;
+}
 
 .task-item {
     display: flex;
@@ -153,9 +309,10 @@ body {
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 8px;
+    position: relative;
+    transition: 0.2s;
 }
 
-/* Checkbox Stili */
 .task-check {
     accent-color: #FFD700;
     width: 18px;
@@ -186,11 +343,11 @@ body {
     background: none;
     outline: none;
     font-size: 14px;
+    color: #495057;
     font-weight: 500;
     word-break: break-all;
 }
 
-/* Alt Əlavə Et Düyməsi */
 .g-input {
     display: flex;
     align-items: center;
@@ -204,4 +361,37 @@ body {
     flex-shrink: 0;
 }
 
-.hidden { display: none !important; }
+.add-circle {
+    background: #9953F1;
+    border-radius: 71px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-circle p {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.add-text {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+    margin-left: -15px;
+}
+
+.add-text p {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+}
